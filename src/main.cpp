@@ -5,6 +5,7 @@
 #include <gamemodel/GameState.h>
 #include <input/Input.h>
 
+
 int main(int argc, char ** argv) {
 	Logger::initSystem(argc, argv);
 
