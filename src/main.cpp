@@ -1,9 +1,8 @@
+#include <logging/Logger.h>
 #include <graphics/GlfwContext.h>
 #include <graphics/GlfwWindow.h>
-#include <logging/Logger.h>
-
-#include <gamemodel/GameState.h>
 #include <graphics/Renderer.h>
+#include <gamemodel/GameState.h>
 #include <input/Input.h>
 
 int main(int argc, char ** argv) {
