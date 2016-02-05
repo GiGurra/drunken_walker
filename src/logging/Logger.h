@@ -5,9 +5,6 @@
 
 class Logger {
 public:
-	static const int LOG_LEVEL_INFO = 1;
-	static const int LOG_LEVEL_WARN = 2;
-	static const int LOG_LEVEL_ERROR = 3;
 
 	Logger(const int logLevel = LOG_LEVEL_INFO);
 	virtual ~Logger();
@@ -22,6 +19,12 @@ public:
 
 	static void initSystem(int argc, char** argv);
 	static void glfwErrorCallback(int error, const char* description);
+
+	enum {
+		LOG_LEVEL_INFO,
+		LOG_LEVEL_WARN,
+		LOG_LEVEL_ERROR
+	};
 
 private:
 	int _currentLevel;
