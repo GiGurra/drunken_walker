@@ -1,7 +1,9 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
-class GameState {
+#include <util/NonCopyable.h>
+
+class GameState : NonCopyable {
 public:
 	GameState();
 	virtual ~GameState();

@@ -3,8 +3,9 @@
 
 #include <gamemodel/GameState.h>
 #include <functional>
+#include <util/NonCopyable.h>
 
-class Input {
+class Input : NonCopyable {
 public:
 	Input(GameState& gameState);
 	virtual ~Input();
