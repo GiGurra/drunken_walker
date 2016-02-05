@@ -1,4 +1,6 @@
 #include "Renderer.h"
+#include "GlfwWindow.h"
+#include <gamemodel/GameState.h>
 
 Renderer::Renderer(const GlfwWindow& window, const GameState& gameState):
 	_window(window), 

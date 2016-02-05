@@ -2,18 +2,17 @@
 #define GLFWWINDOW_H
 
 #include <string>
+#include <functional>
 #include <glm/vec2.hpp>
 #include <GLFW/glfw3.h>
 #include <util/NonCopyable.h>
-
-#include <functional>
 
 class GlfwWindow : NonCopyable {
 public:
 	GlfwWindow(
 		const int width = 1024,
 		const int height = 768,
-		const std::string& windowTitle = "le game");
+		const std::string& windowTitle = "Drunken Walker");
 
 	virtual ~GlfwWindow();
 

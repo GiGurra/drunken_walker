@@ -1,9 +1,10 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#include <gamemodel/GameState.h>
 #include <functional>
 #include <util/NonCopyable.h>
+
+class GameState;
 
 class Input : NonCopyable {
 public:

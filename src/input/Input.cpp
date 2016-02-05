@@ -1,5 +1,6 @@
 #include "Input.h"
 #include <logging/Logger.h>
+#include <gamemodel/GameState.h>
 
 Input::Input(GameState& gameState): 
 	_gameState(gameState),

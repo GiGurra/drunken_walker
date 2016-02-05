@@ -2,9 +2,9 @@
 #define RENDERER_H
 
 #include <util/NonCopyable.h>
-#include "GlfwWindow.h"
 
-#include <gamemodel/GameState.h>
+class GlfwWindow;
+class GameState;
 
 class Renderer : NonCopyable {
 public:
