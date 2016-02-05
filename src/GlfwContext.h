@@ -3,7 +3,9 @@
 
 class GlfwContext {
 public:
-	GlfwContext();
+	typedef void(*error_callback)(int error, const char* description);
+
+	GlfwContext(error_callback errorCallbackFcn);
 	virtual ~GlfwContext();
 
 private:

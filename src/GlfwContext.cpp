@@ -2,11 +2,13 @@
 #include <GLFW/glfw3.h>
 #include "logging/Logger.h"
 
-GlfwContext::GlfwContext() {
+GlfwContext::GlfwContext(error_callback errorCallbackFcn) {
 	Logger::global().info("Initializing Glfw Context");
 
 	if (!glfwInit())
 		throw std::runtime_error("glfwInit() failed");
+
+	glfwSetErrorCallback(errorCallbackFcn);
 }
 
 GlfwContext::~GlfwContext() {

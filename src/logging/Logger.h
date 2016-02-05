@@ -22,6 +22,9 @@ public:
 
 	static Logger& global();
 
+	static void init(int argc, char** argv);
+	static void glfwErrorCallback(int error, const char* description);
+
 private:
 	int _currentLevel;
 

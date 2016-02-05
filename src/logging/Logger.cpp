@@ -5,8 +5,14 @@
 
 INITIALIZE_EASYLOGGINGPP
 
+#define str(x) std::string(x)
+
 Logger::Logger(const int logLevel) : 
 	_currentLevel(logLevel) {
+}
+
+void Logger::init(int argc, char** argv) {
+	START_EASYLOGGINGPP(argc, argv);
 }
 
 Logger::~Logger() {
@@ -56,4 +62,6 @@ void Logger::log(const int level, const std::string& message) {
 	}
 }
 
-
+void Logger::glfwErrorCallback(int error, const char* description) {
+	Logger::global().error(str("Glfw Error Callback: ") + description + " - code: " + std::to_string(error));
+}
