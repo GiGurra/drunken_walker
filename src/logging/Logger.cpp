@@ -21,10 +21,6 @@ Logger& Logger::global() {
 	return globalLogger;
 }
 
-void Logger::debug(const std::string& message) {
-	log(LOG_LEVEL_DEBUG, message);
-}
-
 void Logger::info(const std::string& message) {
 	log(LOG_LEVEL_INFO, message);
 }
@@ -44,9 +40,6 @@ void Logger::setLevel(const int newLogLevel) {
 void Logger::log(const int level, const std::string& message) {
 	if (level >= _currentLevel) {
 		switch (level) {
-		case LOG_LEVEL_DEBUG:
-			LOG(DEBUG) << message;
-			break;
 		case LOG_LEVEL_INFO:
 			LOG(INFO) << message;
 			break;

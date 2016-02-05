@@ -2,6 +2,8 @@
 #define GLFWWINDOW_H
 
 #include <string>
+#include <glm/vec2.hpp>
+#include <GLFW/glfw3.h>
 
 class GlfwWindow {
 public:
@@ -12,8 +14,10 @@ public:
 
 	virtual ~GlfwWindow();
 
+	glm::ivec2 getFramebufferSize() const;
+
 private:
-	void* _underlyingGlfwWindow;
+	GLFWwindow* _underlyingGlfwWindow;
 };
 
 #endif

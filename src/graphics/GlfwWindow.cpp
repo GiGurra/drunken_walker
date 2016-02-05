@@ -8,9 +8,16 @@ GlfwWindow::GlfwWindow(
 	const int height,
 	const std::string& windowTitle) : 
 	_underlyingGlfwWindow(glfwCreateWindow(width, height, windowTitle.c_str(), 0, 0)) {
-
+	Logger::global().info(std::string("Created glfw window: [") + std::to_string(width) + "x" + std::to_string(height) + "x32] -> " + windowTitle);
 }
 
 GlfwWindow::~GlfwWindow() {
-	glfwDestroyWindow((GLFWwindow*)_underlyingGlfwWindow);
+	glfwDestroyWindow(_underlyingGlfwWindow);
 }
+
+glm::ivec2 GlfwWindow::getFramebufferSize() const {
+	int width, height;
+	glfwGetFramebufferSize(_underlyingGlfwWindow, &width, &height);
+	return glm::ivec2(width, height);
+}
+

@@ -7,6 +7,6 @@ int main(int argc, char ** argv) {
 
 	GlfwContext glfwContext(Logger::glfwErrorCallback);
 	GlfwWindow glfwWindow(1200, 800);
-
+	
 	return 0;
 }

@@ -5,7 +5,6 @@
 
 class Logger {
 public:
-	static const int LOG_LEVEL_DEBUG = 0;
 	static const int LOG_LEVEL_INFO = 1;
 	static const int LOG_LEVEL_WARN = 2;
 	static const int LOG_LEVEL_ERROR = 3;
@@ -13,7 +12,6 @@ public:
 	Logger(const int logLevel = LOG_LEVEL_INFO);
 	virtual ~Logger();
 
-	void debug(const std::string& message);
 	void info(const std::string& message);
 	void warn(const std::string& message);
 	void error(const std::string& message);
