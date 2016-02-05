@@ -15,9 +15,26 @@ GlfwWindow::~GlfwWindow() {
 	glfwDestroyWindow(_underlyingGlfwWindow);
 }
 
+void GlfwWindow::makeCurrent() {
+	glfwMakeContextCurrent(_underlyingGlfwWindow);
+}
+
+void GlfwWindow::setViewport(const glm::ivec2& size) {
+	glViewport(0, 0, size.x, size.y);
+}
+
 glm::ivec2 GlfwWindow::getFramebufferSize() const {
 	int width, height;
 	glfwGetFramebufferSize(_underlyingGlfwWindow, &width, &height);
 	return glm::ivec2(width, height);
 }
 
+
+void GlfwWindow::mainLoop(std::function<bool()> iteration) {
+	while (!glfwWindowShouldClose(_underlyingGlfwWindow)) {
+		if (!iteration())
+			return;
+		glfwSwapBuffers(_underlyingGlfwWindow);
+		glfwPollEvents();
+	}
+}

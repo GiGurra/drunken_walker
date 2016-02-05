@@ -10,12 +10,17 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 add_executable(
 	${PROJECT_NAME}
 	main.cpp
+	gamemodel/GameState.cpp
+	gamemodel/GameState.h
+	input/Input.cpp
+	input/Input.h
 	graphics/GlfwContext.cpp
 	graphics/GlfwContext.h
 	graphics/GlfwWindow.cpp
 	graphics/GlfwWindow.h
 	logging/Logger.cpp
 	logging/Logger.h
+	util/NonCopyable.h
 )
 
 target_link_libraries(

@@ -4,8 +4,11 @@
 #include <string>
 #include <glm/vec2.hpp>
 #include <GLFW/glfw3.h>
+#include <util/NonCopyable.h>
 
-class GlfwWindow {
+#include <functional>
+
+class GlfwWindow : NonCopyable {
 public:
 	GlfwWindow(
 		const int width = 1024,
@@ -14,7 +17,12 @@ public:
 
 	virtual ~GlfwWindow();
 
+	void makeCurrent();
+	void setViewport(const glm::ivec2& size);
+
 	glm::ivec2 getFramebufferSize() const;
+
+	void mainLoop(std::function<bool()> iteration);
 
 private:
 	GLFWwindow* _underlyingGlfwWindow;

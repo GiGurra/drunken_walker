@@ -1,9 +1,9 @@
 #ifndef GLFWCONTEXT_H
 #define GLFWCONTEXT_H
 
-#include <memory>
+#include <util/NonCopyable.h>
 
-class GlfwContext {
+class GlfwContext : NonCopyable {
 public:
 	typedef void(*error_callback)(int error, const char* description);
 

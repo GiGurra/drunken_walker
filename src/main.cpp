@@ -7,6 +7,14 @@ int main(int argc, char ** argv) {
 
 	GlfwContext glfwContext(Logger::glfwErrorCallback);
 	GlfwWindow glfwWindow(1200, 800);
+
 	
+	glfwWindow.makeCurrent();
+	glfwWindow.setViewport(glfwWindow.getFramebufferSize());
+
+	glfwWindow.mainLoop([] {
+		return glfwGetTime() < 5.0;
+	});
+
 	return 0;
 }
