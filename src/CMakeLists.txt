@@ -14,6 +14,8 @@ add_executable(
 	gamemodel/GameState.h
 	input/Input.cpp
 	input/Input.h
+	graphics/Renderer.cpp
+	graphics/Renderer.h
 	graphics/GlfwContext.cpp
 	graphics/GlfwContext.h
 	graphics/GlfwWindow.cpp

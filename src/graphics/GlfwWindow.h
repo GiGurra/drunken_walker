@@ -18,14 +18,26 @@ public:
 	virtual ~GlfwWindow();
 
 	void makeCurrent();
-	void setViewport(const glm::ivec2& size);
-
+	
+	float getAspectRatio() const;
 	glm::ivec2 getFramebufferSize() const;
 
-	void mainLoop(std::function<bool()> iteration);
+	typedef int InputKey;
+	typedef int InputScancode;
+	typedef int InputAction;
+	typedef int InputMods;
+	typedef std::function<void(InputKey, InputScancode, InputAction, InputMods)> KeyboardCallbackFcn;
+
+	void setKeyCallback(KeyboardCallbackFcn keyboardCallback);
+	void enterMainLoop(std::function<bool()> iteration);
+
+	////////////////////////////////
+	// Callback handlers
+	void handleKeyboardCallback(InputKey key, InputScancode scanCode, InputAction action, InputMods mods);
 
 private:
 	GLFWwindow* _underlyingGlfwWindow;
+	KeyboardCallbackFcn _keyboardCallbackFcn;
 };
 
 #endif

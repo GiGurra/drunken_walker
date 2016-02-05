@@ -2,18 +2,31 @@
 #include <graphics/GlfwWindow.h>
 #include <logging/Logger.h>
 
+#include <gamemodel/GameState.h>
+#include <graphics/Renderer.h>
+#include <input/Input.h>
+
 int main(int argc, char ** argv) {
 	Logger::initSystem(argc, argv);
 
 	GlfwContext glfwContext(Logger::glfwErrorCallback);
 	GlfwWindow glfwWindow(1200, 800);
 
-	
-	glfwWindow.makeCurrent();
-	glfwWindow.setViewport(glfwWindow.getFramebufferSize());
+	GameState gameState;
+	Input input(gameState);
+	Renderer renderer(glfwWindow, gameState);
 
-	glfwWindow.mainLoop([] {
-		return glfwGetTime() < 5.0;
+	glfwWindow.makeCurrent();
+	glfwWindow.setKeyCallback(input.handleKeyboardFcnPtr);
+	glfwWindow.enterMainLoop([&] {
+
+		const double t = glfwGetTime();
+
+		input.update(t);
+		gameState.update(t);
+		renderer.draw(t);
+
+		return t < 5.0;
 	});
 
 	return 0;

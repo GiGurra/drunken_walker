@@ -5,6 +5,8 @@ class GameState {
 public:
 	GameState();
 	virtual ~GameState();
+
+	void update(const double time);
 };
 
 #endif
