@@ -26,7 +26,7 @@ int main(int argc, char ** argv) {
 		gameState.update(t);
 		renderer.draw(t);
 
-		return t < 5.0;
+		return t < 3600.0;
 	});
 
 	return 0;
