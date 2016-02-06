@@ -21,6 +21,8 @@ public:
 	glm::vec2 edgePos() const;
 	glm::vec2 jointPos() const;
 
+	void placeEdgeAt(const glm::vec2& target, const bool rightHand = true);
+
 private:
 	const float _linkLength1;
 	const float _linkLength2;

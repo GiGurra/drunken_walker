@@ -31,6 +31,8 @@ private:
 	void updateManPosition(const Man& manLastFrame, const float dt);
 	void updateLegPositions(const Man& manLastFrame, const float dt);
 	void updateArmPositions(const Man& manLastFrame, float dt);
+	void clampFeetAboveGround();
+	void clampFootAboveGround(Limb& leg);
 
 	void updateLiftedLeg(const Man& manLastFrame, const float dt);
 	void updateGroundedLeg(const Man& manLastFrame, const float dt);

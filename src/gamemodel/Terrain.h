@@ -1,9 +1,9 @@
 #ifndef TERRAIN_H
 #define TERRAIN_H
 
-#include <vector>
 #include <util/Math.h>
 #include <util/Random.h>
+#include <vector>
 #include "Constants.h"
 
 class Terrain {

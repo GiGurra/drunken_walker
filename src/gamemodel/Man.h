@@ -29,6 +29,7 @@ public:
 	glm::vec2& vel() { return _vel; }
 	const glm::vec2& vel() const { return _vel; }
 
+	// These positions are all relative the Man's position
 	const Limb& leftArm()	const { return _leftArm; }
 	const Limb& rightArm()	const { return _rightArm; }
 	const Limb& leftLeg()	const { return _leftLeg; }
@@ -38,18 +39,6 @@ public:
 	Limb& rightArm()	{ return _rightArm; }
 	Limb& leftLeg()		{ return _leftLeg; }
 	Limb& rightLeg()	{ return _rightLeg; }
-
-	glm::vec2 leftFootPosition() const { return _leftLeg.edgePos(); }
-	glm::vec2 rightFootPosition() const { return _rightLeg.edgePos(); }
-
-	glm::vec2 leftKneePosition() const { return _leftLeg.jointPos(); }
-	glm::vec2 rightKneePosition() const { return _rightLeg.jointPos(); }
-
-	glm::vec2 leftHandPos() const { return _leftArm.edgePos(); }
-	glm::vec2 rightHandPos() const { return _rightArm.edgePos(); }
-
-	glm::vec2 leftElbowPos() const { return _leftArm.jointPos(); }
-	glm::vec2 rightElbowPos() const { return _rightArm.jointPos(); }
 
 	LegEnum liftedLegEnum() const { return _liftedLegEnum; }
 

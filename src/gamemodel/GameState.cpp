@@ -1,6 +1,7 @@
 #include "GameState.h"
 #include <algorithm>
-#include <cmath>
+#include <util/Math.h>
+#include <logging/Logger.h>
 
 GameState::GameState() : 
 	_exitFlag(false),
@@ -22,8 +23,8 @@ void GameState::updateManPosition(const Man& manLastFrame, const float dt) {
 	const float dy = _terrain.vertexAtX(frontFootPos.x).y - frontFootPos.y;
 	_man.pos().y += dy;*/
 
-	const glm::vec2 rightFootPos = _man.rightFootPosition();
-	const glm::vec2 leftFootPos = _man.leftFootPosition();
+	const glm::vec2 rightFootPos = _man.rightLeg().edgePos();
+	const glm::vec2 leftFootPos = _man.leftLeg().edgePos();
 	const float stepLength = _man.leftLeg().length()*0.25f;
 	const float manIdealHeightAboveTerrain = 1.10f * std::hypotf(_man.leftLeg().linkLength1(), _man.leftLeg().linkLength2());
 	const glm::vec2 terrainUnderMan = _terrain.vertexAtX(_man.pos().x);
@@ -44,22 +45,45 @@ void GameState::swapLiftedLegIfHitGround(const Man& manLastFrame) {
 		const glm::vec2 footPosChange = footPos - lastFrameFootPos;
 
 		if (footPosChange.y < 0 && _terrain.isBelowGround(footPos)) {
-			_man.swapLegMovingForward();
+		//	_man.swapLegMovingForward();
 		}
 	}
+
+}
+
+
+void GameState::clampFootAboveGround(Limb& leg) {
+	const float footWorldX = _man.pos().x + leg.edgePos().x;
+	const glm::vec2 footWorldPos(footWorldX, _terrain.vertexAtX(footWorldX).y);
+	const glm::vec2 targetPosRelative = footWorldPos - _man.pos();
+	leg.placeEdgeAt(targetPosRelative);
+}
+
+void GameState::clampFeetAboveGround() {
+	clampFootAboveGround(_man.leftLeg());
+	clampFootAboveGround(_man.rightLeg());
 }
 
 void GameState::updateGroundedLeg(const Man& manLastFrame, const float dt) {
 	// Grounded foot gets new X from movement speed, and new Y from ground
 	// Angles then taken from invese kinematics
+	const float footWorldX = manLastFrame.pos().x + manLastFrame.groundedLeg().edgePos().x;
+	const glm::vec2 footWorldPos(footWorldX, _terrain.vertexAtX(footWorldX).y);
+	const glm::vec2 targetPosRelative = footWorldPos - _man.pos();
+	_man.groundedLeg().placeEdgeAt(targetPosRelative);
 }
 
 void GameState::updateLiftedLeg(const Man& manLastFrame, const float dt) {
 	// Lifted foot makes a circle movement 
 	// Angles then taken from invese kinematics
+	const auto lastManX = manLastFrame.pos().x;
+	const auto manX = _man.pos().x;
+	if (manX != lastManX) {
+	}
 }
 
 void GameState::updateLegPositions(const Man& manLastFrame, const float dt) {
+	clampFeetAboveGround();
 	updateGroundedLeg(manLastFrame, dt);
 	updateLiftedLeg(manLastFrame, dt);
 	swapLiftedLegIfHitGround(manLastFrame);
