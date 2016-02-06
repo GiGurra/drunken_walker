@@ -10,12 +10,9 @@ GameState::GameState() :
 GameState::~GameState() {
 }
 
-void GameState::update(const double time) {
+void GameState::updateManPosition(const Man& manLastFrame, const float dt) {
 
-	// Calculate time step
-	const float dt = static_cast<float>(time - _tLast);
-
-	// Move man
+	// Move man forward
 	_man.pos() += _man.vel() * dt;
 
 	// Keep the man at correct height above ground
@@ -27,13 +24,27 @@ void GameState::update(const double time) {
 	const float avgTerrainUnderMan = 0.5f * (terrainLeftOfMan.y + terrainRightOfMan.y);
 	const float correctHeight = avgTerrainUnderMan + manIdealHeightAboveTerrain;
 	_man.pos().y = correctHeight;
+}
 
+void GameState::updateLegPositions(const Man& manLastFrame, const float dt) {
 	// Animate legs
-	// TODO: If both legs on ground, start moving the back leg
-	// TODO: If one leg on ground, keep moving forward leg
-	// TODO: Calculate leg movement arcs
-	// TODO: Calculate & update joint angles
-	// TODO: clamp any legs on ground to exact ground height
+	// TODO: For any leg that is not on the ground (if both on ground, select the one furthest back)
+	// TODO:	Calculate movement arc
+	// TODO:	Calculate & update joint angles
+}
+
+void GameState::updateArmPositions(const Man& manLastFrame, const float dt) {
+	// TODO: Something fun in the future
+}
+
+void GameState::update(const double time) {
+
+	const float dt = static_cast<float>(time - _tLast);
+	const Man manLastFrame = _man;
+
+	updateManPosition(manLastFrame, dt);
+	updateLegPositions(manLastFrame, dt);
+	updateArmPositions(manLastFrame, dt);
 
 	_tLast = time;
 }

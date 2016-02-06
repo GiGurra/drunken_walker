@@ -7,6 +7,7 @@
 
 class GlfwWindow;
 class GameState;
+class Limb;
 
 class Renderer : NonCopyable {
 public:
@@ -25,6 +26,7 @@ private:
 	void beginFrame();
 	void drawGround();
 	void drawMan();
+	void drawLimb(const Limb& limb);
 	void drawManBodyCenter();
 	void drawTestTriangle(const double time);
 

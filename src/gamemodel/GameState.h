@@ -29,6 +29,10 @@ private:
 	Terrain _terrain;
 	Man _man;
 
+	void updateManPosition(const Man& manLastFrame, const float dt);
+	void updateLegPositions(const Man& manLastFrame, const float dt);
+	void updateArmPositions(const Man& manLastFrame, float dt);
+
 };
 
 #endif

@@ -2,6 +2,7 @@
 #include "GlfwWindow.h"
 #include <gamemodel/GameState.h>
 #include <gamemodel/Constants.h>
+#include <gamemodel/Limb.h>
 
 #define _USE_MATH_DEFINES
 #include <cmath> // why is this not enough to get M_PI in VS2015?....
@@ -47,6 +48,10 @@ void Renderer::drawGround() {
 }
 
 void Renderer::drawMan() {
+}
+
+void Renderer::drawLimb(const Limb& limb) {
+
 }
 
 void Renderer::drawManBodyCenter() {
