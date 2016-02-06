@@ -1,10 +1,9 @@
 # drunken_walker
 
-## TODO
+## Stuff left todo..
 
 ### mvp
 
-* Create moving terrain
 * Draw stick figure
 * Make legs walk/rotate
 * Inverse kinematics for legs
