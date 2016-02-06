@@ -6,6 +6,8 @@ public:
 	impl(const double min, const double max) : 
 		_engine(_randomDevice()),
 		_dist(min, max) {
+
+
 	}
 	virtual ~impl() {		
 	}

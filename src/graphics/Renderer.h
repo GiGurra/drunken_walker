@@ -2,6 +2,7 @@
 #define RENDERER_H
 
 #include <util/NonCopyable.h>
+#include <glm/vec2.hpp>
 
 class GlfwWindow;
 class GameState;
@@ -16,6 +17,10 @@ public:
 private:
 	const GlfwWindow& _window;
 	const GameState& _gameState;
+
+	float _screenWidth;
+	float _cameraX;
+
 };
 
 #endif
