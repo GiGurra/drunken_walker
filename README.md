@@ -8,6 +8,7 @@
 
 
 ### nice to have
+ * Jumping
  * Obstacles for jumping
  * Some text/ui on screen
  * Modern OpenGL
@@ -16,6 +17,7 @@
  * More dynamic camera
  * sound effects? :)
  * Finish line vs flappy bird :S
+ * Auto-create more terrain on demand
 
 
 ## Build Instructions
