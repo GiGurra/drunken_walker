@@ -16,13 +16,6 @@ void GameState::updateManPosition(const Man& manLastFrame, const float dt) {
 	// Move man forward
 	_man.pos() += _man.vel() * dt;
 	
-	/*
-	// Keep the man at correct height above ground
-	// -> that is: Rightmost leg should be on the ground
-	const glm::vec2 frontFootPos = _man.pos() + _man.frontLeg().edgePos();
-	const float dy = _terrain.vertexAtX(frontFootPos.x).y - frontFootPos.y;
-	_man.pos().y += dy;*/
-
 	const glm::vec2 rightFootPos = _man.rightLeg().edgePos();
 	const glm::vec2 leftFootPos = _man.leftLeg().edgePos();
 	const float stepLength = _man.leftLeg().length()*0.25f;
@@ -64,8 +57,8 @@ void GameState::clampFootAboveGround(Limb& leg) {
 }
 
 void GameState::clampFeetAboveGround() {
-	//clampFootAboveGround(_man.leftLeg());
-	//clampFootAboveGround(_man.rightLeg());
+	clampFootAboveGround(_man.leftLeg());
+	clampFootAboveGround(_man.rightLeg());
 }
 
 void GameState::placeFootAt(const glm::vec2& targetWorldPos, Limb& leg) {
@@ -82,19 +75,24 @@ void GameState::updateGroundedLeg(const Man& manLastFrame, const float dt) {
 }
 
 void GameState::updateLiftedLeg(const Man& manLastFrame, const float dt) {
-	// Lifted foot makes a circle movement 
-	// Angles then taken from invese kinematics
+
 	const auto lastManX = manLastFrame.pos().x;
 	const auto manX = _man.pos().x;
 	if (manX != lastManX) {
+
 		Limb& leg = _man.liftedLeg();
-		const float upDownSpeed = 0.5f;
-		const float moveDist = upDownSpeed * dt;
-		const float dx = leg.edgePos().x < 0.15f * leg.length() ? moveDist : 0.0f;
+
+		const float verticalSpeed = 0.5f;
+		const float horizontalSpeed = 1.75 * 0.5f;
+
+		const float verticalMoveDist = verticalSpeed * dt;
+		const float horizontalMoveDist = horizontalSpeed * dt;
 		const bool moveLegUp = _man.groundedLeg().edgePos().x > -0.10f * _man.groundedLeg().length();
-		const float dy = moveLegUp ? moveDist : -moveDist;
-		const glm::vec2 prevPos = leg.edgePos();
-		leg.placeEdgeAt(prevPos + glm::vec2(dx, dy));
+
+		const float dx = leg.edgePos().x < 0.2f * leg.length() ? horizontalMoveDist : 0.0f;
+		const float dy = moveLegUp ? verticalMoveDist : -verticalMoveDist;
+
+		leg.placeEdgeAt(leg.edgePos() + glm::vec2(dx, dy));
 	}
 }
 
