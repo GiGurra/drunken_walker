@@ -4,6 +4,7 @@
 
 ### mvp
 
+* Draw terrain
 * Draw stick figure
 * Make legs walk/rotate
 * Inverse kinematics for legs
