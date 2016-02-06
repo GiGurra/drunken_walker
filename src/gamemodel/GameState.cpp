@@ -11,24 +11,6 @@ GameState::GameState() :
 GameState::~GameState() {
 }
 
-void GameState::updateManPosition(const Man& manLastFrame, const float dt) {
-
-	// Move man forward
-	_man.pos() += _man.vel() * dt;
-	
-	const glm::vec2 rightFootPos = _man.rightLeg().edgePos();
-	const glm::vec2 leftFootPos = _man.leftLeg().edgePos();
-	const float stepLength = _man.leftLeg().length()*0.25f;
-	const float manIdealHeightAboveTerrain = 1.10f * std::hypotf(_man.leftLeg().linkLength1(), _man.leftLeg().linkLength2());
-	const glm::vec2 terrainUnderMan = _terrain.vertexAtX(_man.pos().x);
-	const glm::vec2 terrainLeftOfMan = _terrain.vertexAtX(std::max(0.0f, _man.pos().x - stepLength));
-	const glm::vec2 terrainRightOfMan = _terrain.vertexAtX(_man.pos().x + stepLength);
-	const float avgTerrainUnderMan = 0.5f * (terrainLeftOfMan.y + terrainRightOfMan.y);
-	const float correctHeight = avgTerrainUnderMan + manIdealHeightAboveTerrain;
-	_man.pos().y = correctHeight;
-}
-
-
 void GameState::swapLiftedLegIfHitGround(const Man& manLastFrame) {
 
 	if (manLastFrame.liftedLegEnum() == _man.liftedLegEnum()) {
@@ -122,3 +104,22 @@ void GameState::setExitFlag(const bool state) {
 void GameState::updateArmPositions(const Man& manLastFrame, const float dt) {
 	// TODO: Something fun in the future
 }
+
+void GameState::updateManPosition(const Man& manLastFrame, const float dt) {
+
+	// Move man forward
+	_man.pos() += _man.vel() * dt;
+
+	// Find a reasonable height above ground for CG
+	const glm::vec2 rightFootPos = _man.rightLeg().edgePos();
+	const glm::vec2 leftFootPos = _man.leftLeg().edgePos();
+	const float stepLength = _man.leftLeg().length()*0.25f;
+	const float manIdealHeightAboveTerrain = 1.10f * std::hypotf(_man.leftLeg().linkLength1(), _man.leftLeg().linkLength2());
+	const glm::vec2 terrainUnderMan = _terrain.vertexAtX(_man.pos().x);
+	const glm::vec2 terrainLeftOfMan = _terrain.vertexAtX(std::max(0.0f, _man.pos().x - stepLength));
+	const glm::vec2 terrainRightOfMan = _terrain.vertexAtX(_man.pos().x + stepLength);
+	const float avgTerrainUnderMan = 0.5f * (terrainLeftOfMan.y + terrainRightOfMan.y);
+	const float correctHeight = avgTerrainUnderMan + manIdealHeightAboveTerrain;
+	_man.pos().y = correctHeight;
+}
+
