@@ -8,6 +8,18 @@
 #include <cmath> // why is this not enough to get M_PI in VS2015?....
 #include <math.h>
 
+static void drawSolidCircle(const glm::vec2& center, const float radius, const int n = 50) {
+	glBegin(GL_TRIANGLE_FAN);
+	glVertex2f(center.x, center.y);
+	for (int i = 0; i <= n; i++) {
+		const float angle = static_cast<float>(2.0 * M_PI * static_cast<double>(i) / static_cast<double>(n));
+		const float x = center.x + radius * cosf(angle);
+		const float y = center.y + radius * sinf(angle);
+		glVertex2f(x, y);
+	}
+	glEnd();
+}
+
 Renderer::Renderer(const GlfwWindow& window, const GameState& gameState):
 	_window(window), 
 	_gameState(gameState),
@@ -48,28 +60,28 @@ void Renderer::drawGround() {
 }
 
 void Renderer::drawMan() {
+	const Man& man = _gameState.man();
+	glTranslatef(man.pos().x, man.pos().y, 0.0f);
+
+	drawLimb(man.leftArm());
+	drawLimb(man.rightArm());
+	drawLimb(man.leftLeg());
+	drawLimb(man.rightLeg());
 }
 
 void Renderer::drawLimb(const Limb& limb) {
-
+	glColor3ub(0xf9, 0xe0, 0x4c);
+	drawSolidCircle(limb.jointPos(), 0.1f);
+	glColor3ub(0xf7, 0xe8, 0xaa);
+	drawSolidCircle(limb.edgePos(), 0.1f);
 }
 
 void Renderer::drawManBodyCenter() {
 	// Draw circle at center of man.. for reference
 	const auto center = _gameState.man().pos();
 	const float radius = 0.1f;
-	const int n = 50;
-
 	glColor3ub(0x00, 0xA6, 0x00);	
-	glBegin(GL_TRIANGLE_FAN);
-	glVertex2f(center.x, center.y);
-	for (int i = 0; i <= n; i++) {
-		const float angle = static_cast<float>(2.0 * M_PI * static_cast<double>(i) / static_cast<double>(n));
-		const float x = center.x + radius * cosf(angle);
-		const float y = center.y + radius * sinf(angle);
-		glVertex2f(x,y);
-	}
-	glEnd();
+	drawSolidCircle(center, radius);
 }
 
 void Renderer::drawTestTriangle(const double time) {

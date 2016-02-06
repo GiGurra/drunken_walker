@@ -12,9 +12,6 @@ Input::~Input() {
 }
 
 void Input::handleKeyboard(InputKey key, InputScancode scanCode, InputAction action, InputMods mods) {
-	// TODO: Do something!
-	Logger::global().info(std::string("Did something with key: ") + char(key));
-
 	switch (action) {
 	case GLFW_PRESS:
 		handleKeyPress(key, scanCode, mods);
