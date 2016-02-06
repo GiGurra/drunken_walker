@@ -16,7 +16,7 @@
  * More dynamic camera
  * sound effects? :)
  * Finish line vs flappy bird :S
- * 
+
 
 ## Build Instructions
 
