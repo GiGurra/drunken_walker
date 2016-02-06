@@ -36,3 +36,8 @@ Then:
 * On Windows: Builds on Visual Studio 2015 without any external dependencies 
 * On Ubuntu: Install dependencies listed in deps/ubuntu.sh
 * Others: Check CMakelists.txt & contents of deps/ubuntu.sh to figure out what you need
+
+## Bundled Dependencies
+* [GLFW](http://www.glfw.org/) for creating an OpenGL capable window
+* [GLM](https://github.com/g-truc/glm) for some vector math
+* [Easylogging](https://github.com/easylogging/easyloggingpp) for logging
