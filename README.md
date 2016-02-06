@@ -2,12 +2,11 @@
 
 ### Stuff left todo.. mvp
 
-* Draw stick figure
-* Make legs walk/rotate
-* Inverse kinematics for legs
+..all done..
 
 
-### nice to have
+### Future stuff that's nice to have
+ * Walk to the left :)
  * Jumping
  * Obstacles for jumping
  * Some text/ui on screen
