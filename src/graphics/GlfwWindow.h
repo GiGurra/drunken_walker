@@ -3,9 +3,9 @@
 
 #include <string>
 #include <functional>
-#include <glm/vec2.hpp>
-#include <GLFW/glfw3.h>
+#include <util/Math.h>
 #include <util/NonCopyable.h>
+#include <GLFW/glfw3.h>
 
 class GlfwWindow : NonCopyable {
 public:

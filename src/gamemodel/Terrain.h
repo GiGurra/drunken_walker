@@ -2,7 +2,7 @@
 #define TERRAIN_H
 
 #include <vector>
-#include <glm/vec2.hpp>
+#include <util/Math.h>
 #include <util/Random.h>
 #include "Constants.h"
 
