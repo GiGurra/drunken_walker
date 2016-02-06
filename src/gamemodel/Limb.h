@@ -1,7 +1,7 @@
 #ifndef LIMB_H
 #define LIMB_H
 
-#include <glm/glm.hpp>
+#include <util/Math.h>
 
 class Limb {
 public:

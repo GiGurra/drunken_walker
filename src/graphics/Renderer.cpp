@@ -4,10 +4,6 @@
 #include <gamemodel/Constants.h>
 #include <gamemodel/Limb.h>
 
-#define _USE_MATH_DEFINES
-#include <cmath> // why is this not enough to get M_PI in VS2015?....
-#include <math.h>
-
 static void drawSolidCircle(const glm::vec2& center, const float radius, const int n = 50) {
 	glBegin(GL_TRIANGLE_FAN);
 	glVertex2f(center.x, center.y);
@@ -84,19 +80,6 @@ void Renderer::drawManBodyCenter() {
 	drawSolidCircle(center, radius);
 }
 
-void Renderer::drawTestTriangle(const double time) {
-	glRotatef(static_cast<float>(time) * 50.f, 0.f, 0.f, 1.f);
-	glBegin(GL_TRIANGLES);
-	glColor3f(1.f, 0.f, 0.f);
-	glVertex3f(-0.6f, -0.4f, 0.f);
-	glColor3f(0.f, 1.f, 0.f);
-	glVertex3f(0.6f, -0.4f, 0.f);
-	glColor3f(0.f, 0.f, 1.f);
-	glVertex3f(0.f, 0.6f, 0.f);
-	glEnd();
-}
-
-
 void Renderer::pushPopped(std::function<void()> expr) {
 	glPushMatrix();
 	expr();
@@ -108,5 +91,4 @@ void Renderer::draw(const double time) {
 	pushPopped([this] { drawGround(); });
 	pushPopped([this] { drawMan(); });
 	pushPopped([this] { drawManBodyCenter(); });
-	//pushPopped([this, time] { drawTestTriangle(time); });
 }

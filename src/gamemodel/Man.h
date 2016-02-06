@@ -1,7 +1,7 @@
 #ifndef MAN_H
 #define MAN_H
 
-#include <glm/vec2.hpp>
+#include <util/Math.h>
 #include <gamemodel/Constants.h>
 #include <gamemodel/Limb.h>
 

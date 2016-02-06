@@ -2,7 +2,7 @@
 #define RENDERER_H
 
 #include <util/NonCopyable.h>
-#include <glm/vec2.hpp>
+#include <util/Math.h>
 #include <functional>
 
 class GlfwWindow;
@@ -28,7 +28,6 @@ private:
 	void drawMan();
 	void drawLimb(const Limb& limb);
 	void drawManBodyCenter();
-	void drawTestTriangle(const double time);
 
 	void pushPopped(std::function<void()> expr);
 

@@ -1,7 +1,5 @@
 #include "Limb.h"
 
-#include <util/Math.h>
-
 Limb::Limb(const float linkLength1, const float linkLength2) : 
 	_linkLength1(linkLength1),
 	_linkLength2(linkLength2),
