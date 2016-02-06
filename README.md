@@ -17,6 +17,7 @@
  * More dynamic camera
  * sound effects? :)
  * Finish line vs flappy bird :S
+ * Auto-create more terrain on demand
 
 
 ## Build Instructions
