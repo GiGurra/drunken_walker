@@ -33,4 +33,4 @@
 ## Build Dependencies
 * On Windows: Builds on Visual Studio 2015 without any external dependencies 
 * On Ubuntu: Install dependencies listed in deps/ubuntu.sh
-* Others: Check contents of deps/ubuntu.sh to figure out what you need on other dists
+* Others: Check CMakelists.txt & contents of deps/ubuntu.sh to figure out what you need
