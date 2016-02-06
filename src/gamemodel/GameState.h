@@ -2,7 +2,6 @@
 #define GAMESTATE_H
 
 #include <util/NonCopyable.h>
-#include <util/Random.h>
 
 #include <gamemodel/Terrain.h>
 #include <gamemodel/Man.h>
@@ -27,7 +26,6 @@ public:
 private:
 	bool _exitFlag;
 	double _tLast;
-	Random _randomizer;
 	Terrain _terrain;
 	Man _man;
 

@@ -4,7 +4,6 @@
 
 GameState::GameState() : 
 	_exitFlag(false),
-	_randomizer(0.0, 1.0),
 	_tLast(0.0) {
 }
 
