@@ -32,11 +32,9 @@ private:
 	void updateLegPositions(const Man& manLastFrame, const float dt);
 	void updateArmPositions(const Man& manLastFrame, float dt);
 
-	void updateLegPosition(
-		const Man& manLastFrame, 
-		const Limb& legLastFrame,
-		const float dt,
-		Limb& leg);
+	void updateLiftedLeg(const Man& manLastFrame, const float dt);
+	void updateGroundedLeg(const Man& manLastFrame, const float dt);
+	void swapLiftedLegIfHitGround(const Man& manLastFrame);
 };
 
 #endif

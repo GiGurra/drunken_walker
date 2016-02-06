@@ -14,8 +14,16 @@ void GameState::updateManPosition(const Man& manLastFrame, const float dt) {
 
 	// Move man forward
 	_man.pos() += _man.vel() * dt;
-
+	
+	/*
 	// Keep the man at correct height above ground
+	// -> that is: Rightmost leg should be on the ground
+	const glm::vec2 frontFootPos = _man.pos() + _man.frontLeg().edgePos();
+	const float dy = _terrain.vertexAtX(frontFootPos.x).y - frontFootPos.y;
+	_man.pos().y += dy;*/
+
+	const glm::vec2 rightFootPos = _man.rightFootPosition();
+	const glm::vec2 leftFootPos = _man.leftFootPosition();
 	const float stepLength = _man.leftLeg().length()*0.25f;
 	const float manIdealHeightAboveTerrain = 1.10f * std::hypotf(_man.leftLeg().linkLength1(), _man.leftLeg().linkLength2());
 	const glm::vec2 terrainUnderMan = _terrain.vertexAtX(_man.pos().x);
@@ -26,26 +34,35 @@ void GameState::updateManPosition(const Man& manLastFrame, const float dt) {
 	_man.pos().y = correctHeight;
 }
 
-void GameState::updateLegPosition(
-	const Man& manLastFrame,
-	const Limb& legLastFrame,
-	const float dt,
-	Limb& leg) {
 
+void GameState::swapLiftedLegIfHitGround(const Man& manLastFrame) {
+
+	if (manLastFrame.liftedLegEnum() == _man.liftedLegEnum()) {
+
+		const auto footPos = _man.liftedLeg().edgePos();
+		const auto lastFrameFootPos = manLastFrame.liftedLeg().edgePos();
+		const glm::vec2 footPosChange = footPos - lastFrameFootPos;
+
+		if (footPosChange.y < 0 && _terrain.isBelowGround(footPos)) {
+			_man.swapLegMovingForward();
+		}
+	}
+}
+
+void GameState::updateGroundedLeg(const Man& manLastFrame, const float dt) {
+	// Grounded foot gets new X from movement speed, and new Y from ground
+	// Angles then taken from invese kinematics
+}
+
+void GameState::updateLiftedLeg(const Man& manLastFrame, const float dt) {
+	// Lifted foot makes a circle movement 
+	// Angles then taken from invese kinematics
 }
 
 void GameState::updateLegPositions(const Man& manLastFrame, const float dt) {
-	// Determine which leg to move
-	if (manLastFrame.rightFootPosition().x < manLastFrame.leftFootPosition().x) {
-		updateLegPosition(manLastFrame, manLastFrame.rightLeg(), dt, _man.rightLeg());
-	}
-	else {
-		updateLegPosition(manLastFrame, manLastFrame.leftLeg(), dt, _man.leftLeg());
-	}
-}
-
-void GameState::updateArmPositions(const Man& manLastFrame, const float dt) {
-	// TODO: Something fun in the future
+	updateGroundedLeg(manLastFrame, dt);
+	updateLiftedLeg(manLastFrame, dt);
+	swapLiftedLegIfHitGround(manLastFrame);
 }
 
 void GameState::update(const double time) {
@@ -62,4 +79,8 @@ void GameState::update(const double time) {
 
 void GameState::setExitFlag(const bool state) {
 	_exitFlag = state;
+}
+
+void GameState::updateArmPositions(const Man& manLastFrame, const float dt) {
+	// TODO: Something fun in the future
 }

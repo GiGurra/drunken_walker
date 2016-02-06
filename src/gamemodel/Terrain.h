@@ -24,6 +24,7 @@ public:
 	const std::vector<glm::vec2>& Terrain::vertices() const { return _vertices; }
 
 	bool isAboveGround(const glm::vec2& pos) const;
+	bool isBelowGround(const glm::vec2& pos) const { return !isAboveGround(pos); }
 
 private:
 	Random _randomizer;

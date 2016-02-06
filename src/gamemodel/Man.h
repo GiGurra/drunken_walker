@@ -5,6 +5,18 @@
 #include <gamemodel/Constants.h>
 #include <gamemodel/Limb.h>
 
+enum LegEnum {
+	RIGHT_LEG,
+	LEFT_LEG
+};
+
+enum ArmEnum {
+	RIGHT_ARM,
+	LEFT_ARM
+};
+
+class Terrain;
+
 class Man {
 public:
 	Man(const float armLinkLength = constants::MAN_ARM_LINK_LENGTH,
@@ -39,7 +51,18 @@ public:
 	glm::vec2 leftElbowPos() const { return _leftArm.jointPos(); }
 	glm::vec2 rightElbowPos() const { return _rightArm.jointPos(); }
 
+	LegEnum liftedLegEnum() const { return _liftedLegEnum; }
+
+	const Limb& liftedLeg() const;
+	Limb& liftedLeg();
+
+	const Limb& groundedLeg() const;
+	Limb& groundedLeg();
+
+	void swapLegMovingForward();
+
 private:
+	LegEnum _liftedLegEnum;
 	glm::vec2 _pos;
 	glm::vec2 _vel;
 	Limb _leftArm;
