@@ -24,7 +24,7 @@ void GameState::update(const double time) {
 	const glm::vec2 terrainUnderMan = _terrain.vertexAtX(_man.pos().x);
 	const glm::vec2 terrainLeftOfMan = _terrain.vertexAtX(std::max(0.0f, _man.pos().x - stepLength));
 	const glm::vec2 terrainRightOfMan = _terrain.vertexAtX(_man.pos().x + stepLength);
-	const float avgTerrainUnderMan = 0.5f * (terrainLeftOfMan.y, terrainRightOfMan.y);
+	const float avgTerrainUnderMan = 0.5f * (terrainLeftOfMan.y + terrainRightOfMan.y);
 	const float correctHeight = avgTerrainUnderMan + manIdealHeightAboveTerrain;
 	_man.pos().y = correctHeight;
 
