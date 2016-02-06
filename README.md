@@ -32,7 +32,7 @@
 
 ## Build Dependencies
 * [CMake](https://cmake.org/) >= 3.1
-* make + g++ on linux || vs2015 on windows
+* make & g++ on linux || vs2015 on windows
 Then:
 * On Windows: Builds on Visual Studio 2015 without any external dependencies 
 * On Ubuntu: Install dependencies listed in deps/ubuntu.sh
