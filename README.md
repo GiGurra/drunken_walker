@@ -8,6 +8,7 @@
 
 
 ### nice to have
+ * Jumping
  * Obstacles for jumping
  * Some text/ui on screen
  * Modern OpenGL
