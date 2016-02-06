@@ -64,8 +64,8 @@ void GameState::clampFootAboveGround(Limb& leg) {
 }
 
 void GameState::clampFeetAboveGround() {
-	clampFootAboveGround(_man.leftLeg());
-	clampFootAboveGround(_man.rightLeg());
+	//clampFootAboveGround(_man.leftLeg());
+	//clampFootAboveGround(_man.rightLeg());
 }
 
 void GameState::placeFootAt(const glm::vec2& targetWorldPos, Limb& leg) {
@@ -88,8 +88,11 @@ void GameState::updateLiftedLeg(const Man& manLastFrame, const float dt) {
 	const auto manX = _man.pos().x;
 	if (manX != lastManX) {
 		Limb& leg = _man.liftedLeg();
-		const float dx = dt * _man.vel().x;
-		const float dy = leg.edgePos().x < 0.0f ? dx : -dx;
+		const float upDownSpeed = 0.5f;
+		const float moveDist = upDownSpeed * dt;
+		const float dx = leg.edgePos().x < 0.15f * leg.length() ? moveDist : 0.0f;
+		const bool moveLegUp = _man.groundedLeg().edgePos().x > -0.10f * _man.groundedLeg().length();
+		const float dy = moveLegUp ? moveDist : -moveDist;
 		const glm::vec2 prevPos = leg.edgePos();
 		leg.placeEdgeAt(prevPos + glm::vec2(dx, dy));
 	}
