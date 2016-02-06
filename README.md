@@ -19,6 +19,7 @@
  * sound effects? :)
  * Finish line vs flappy bird :S
  * Auto-create more terrain on demand
+ * A better inverse kinematics solver
 
 
 ## Build Instructions
