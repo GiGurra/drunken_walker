@@ -9,3 +9,12 @@ GameState::~GameState() {
 void GameState::update(const double time) {
 	// TODO: Update positions
 }
+
+
+const Terrain& GameState::terrain() const {
+	return _terrain;
+}
+
+const Man& GameState::man() const {
+	return _man;
+}

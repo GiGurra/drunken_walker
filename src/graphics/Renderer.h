@@ -3,6 +3,7 @@
 
 #include <util/NonCopyable.h>
 #include <glm/vec2.hpp>
+#include <functional>
 
 class GlfwWindow;
 class GameState;
@@ -20,6 +21,13 @@ private:
 
 	float _screenWidth;
 	float _cameraX;
+
+	void beginFrame();
+	void drawGround();
+	void drawMan();
+	void drawTestTriangle(const double time);
+
+	void pushPopped(std::function<void()> expr);
 
 };
 

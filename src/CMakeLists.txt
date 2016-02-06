@@ -17,6 +17,8 @@ add_executable(
 	gamemodel/Terrain.cpp
 	gamemodel/Terrain.h
 	gamemodel/Constants.h
+	gamemodel/Man.cpp
+	gamemodel/Man.h
 	input/Input.cpp
 	input/Input.h
 	graphics/Renderer.cpp
