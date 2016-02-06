@@ -18,7 +18,7 @@
  * Finish line vs flappy bird :S
  * 
 
-## Instructions
+## Build Instructions
 
 * clone the repo
 * create a directory inside named target/ 
