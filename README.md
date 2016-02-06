@@ -8,6 +8,7 @@
 ### Future stuff that's nice to have
  * Walk to the left :)
  * More intelligent decision making on when to 'change lifted leg'
+ * Smoother vertical leg movement (perhaps a simple sine instead of current bang-bang)
  * Jumping
  * Obstacles for jumping
  * Some text/ui on screen
