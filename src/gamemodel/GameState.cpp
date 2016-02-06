@@ -53,10 +53,12 @@ void GameState::swapLiftedLegIfHitGround(const Man& manLastFrame) {
 
 
 void GameState::clampFootAboveGround(Limb& leg) {
-	const float footWorldX = _man.pos().x + leg.edgePos().x;
-	const glm::vec2 footWorldPos(footWorldX, _terrain.vertexAtX(footWorldX).y);
-	const glm::vec2 targetPosRelative = footWorldPos - _man.pos();
-	leg.placeEdgeAt(targetPosRelative);
+	const float worldX = _man.pos().x + leg.edgePos().x;
+	const float worldY = _man.pos().y + leg.edgePos().y;
+	const float terrainY = _terrain.vertexAtX(worldX).y;
+	if (worldY < terrainY) {
+		placeFootAt(glm::vec2(worldX, terrainY), leg);
+	}
 }
 
 void GameState::clampFeetAboveGround() {
@@ -64,13 +66,17 @@ void GameState::clampFeetAboveGround() {
 	clampFootAboveGround(_man.rightLeg());
 }
 
+void GameState::placeFootAt(const glm::vec2& targetWorldPos, Limb& leg) {
+	leg.placeEdgeAt(targetWorldPos - _man.pos());
+}
+
+void GameState::placeFootOnGroundAt(const float x, Limb& leg) {
+	placeFootAt(glm::vec2(x, _terrain.vertexAtX(x).y), leg);
+}
+
 void GameState::updateGroundedLeg(const Man& manLastFrame, const float dt) {
-	// Grounded foot gets new X from movement speed, and new Y from ground
-	// Angles then taken from invese kinematics
-	const float footWorldX = manLastFrame.pos().x + manLastFrame.groundedLeg().edgePos().x;
-	const glm::vec2 footWorldPos(footWorldX, _terrain.vertexAtX(footWorldX).y);
-	const glm::vec2 targetPosRelative = footWorldPos - _man.pos();
-	_man.groundedLeg().placeEdgeAt(targetPosRelative);
+	const float worldX = manLastFrame.pos().x + manLastFrame.groundedLeg().edgePos().x;
+	placeFootOnGroundAt(worldX, _man.groundedLeg());
 }
 
 void GameState::updateLiftedLeg(const Man& manLastFrame, const float dt) {

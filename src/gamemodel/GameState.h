@@ -33,6 +33,8 @@ private:
 	void updateArmPositions(const Man& manLastFrame, float dt);
 	void clampFeetAboveGround();
 	void clampFootAboveGround(Limb& leg);
+	void placeFootAt(const glm::vec2& targetWorldPos, Limb& leg);
+	void placeFootOnGroundAt(const float x, Limb& leg);
 
 	void updateLiftedLeg(const Man& manLastFrame, const float dt);
 	void updateGroundedLeg(const Man& manLastFrame, const float dt);
