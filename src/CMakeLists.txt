@@ -34,6 +34,7 @@ add_executable(
 	util/NonCopyable.h
 	util/Random.cpp
 	util/Random.h
+	util/Math.h
 )
 
 target_link_libraries(

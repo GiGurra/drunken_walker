@@ -11,12 +11,6 @@ public:
 		const float legLinkLength = constants::MAN_LEG_LINK_LENGTH);
 	virtual ~Man();
 
-	float leftArmNeutralAngleDegs() const { return 120.0f; }
-	float rightArmNeutralAngleDegs() const { return 60.0f; }
-
-	float leftLegNeutralAngleDegs() const { return -100.0f; }
-	float rightLegNeutralAngleDegs() const { return 80.0f; }
-
 	glm::vec2& pos() { return _pos; }
 	const glm::vec2& pos() const { return _pos; }
 
@@ -32,6 +26,18 @@ public:
 	Limb& rightArm()	{ return _rightArm; }
 	Limb& leftLeg()		{ return _leftLeg; }
 	Limb& rightLeg()	{ return _rightLeg; }
+
+	glm::vec2 leftFootPosition() const { return _leftLeg.edgePos(); }
+	glm::vec2 rightFootPosition() const { return _rightLeg.edgePos(); }
+
+	glm::vec2 leftKneePosition() const { return _leftLeg.jointPos(); }
+	glm::vec2 rightKneePosition() const { return _rightLeg.jointPos(); }
+
+	glm::vec2 leftHandPos() const { return _leftArm.edgePos(); }
+	glm::vec2 rightHandPos() const { return _rightArm.edgePos(); }
+
+	glm::vec2 leftElbowPos() const { return _leftArm.jointPos(); }
+	glm::vec2 rightElbowPos() const { return _rightArm.jointPos(); }
 
 private:
 	glm::vec2 _pos;

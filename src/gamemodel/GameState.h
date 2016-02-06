@@ -22,7 +22,6 @@ public:
 	void setExitFlag(const bool state);
 	bool isExitFlagSet() const { return _exitFlag; }
 
-
 private:
 	bool _exitFlag;
 	double _tLast;
@@ -33,6 +32,11 @@ private:
 	void updateLegPositions(const Man& manLastFrame, const float dt);
 	void updateArmPositions(const Man& manLastFrame, float dt);
 
+	void updateLegPosition(
+		const Man& manLastFrame, 
+		const Limb& legLastFrame,
+		const float dt,
+		Limb& leg);
 };
 
 #endif

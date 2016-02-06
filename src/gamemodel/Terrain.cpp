@@ -13,6 +13,10 @@ Terrain::Terrain(const float stepLength, const float amplitude, const float worl
 Terrain::~Terrain() {
 }
 
+bool Terrain::isAboveGround(const glm::vec2& pos) const {
+	return pos.y > vertexAtX(pos.x).y;
+}
+
 glm::vec2 Terrain::vertexAtX(const float x) const {
 	if (x < 0.0f) {
 		Logger::global().error(std::string("Requesting terrain at x < 0.0f: ") + std::to_string(x));

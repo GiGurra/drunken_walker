@@ -26,11 +26,22 @@ void GameState::updateManPosition(const Man& manLastFrame, const float dt) {
 	_man.pos().y = correctHeight;
 }
 
+void GameState::updateLegPosition(
+	const Man& manLastFrame,
+	const Limb& legLastFrame,
+	const float dt,
+	Limb& leg) {
+
+}
+
 void GameState::updateLegPositions(const Man& manLastFrame, const float dt) {
-	// Animate legs
-	// TODO: For any leg that is not on the ground (if both on ground, select the one furthest back)
-	// TODO:	Calculate movement arc
-	// TODO:	Calculate & update joint angles
+	// Determine which leg to move
+	if (manLastFrame.rightFootPosition().x < manLastFrame.leftFootPosition().x) {
+		updateLegPosition(manLastFrame, manLastFrame.rightLeg(), dt, _man.rightLeg());
+	}
+	else {
+		updateLegPosition(manLastFrame, manLastFrame.leftLeg(), dt, _man.leftLeg());
+	}
 }
 
 void GameState::updateArmPositions(const Man& manLastFrame, const float dt) {

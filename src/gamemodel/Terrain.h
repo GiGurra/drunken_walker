@@ -23,6 +23,7 @@ public:
 	float length() const { return float(_vertices.size()) * stepLength() - stepLength(); }
 	const std::vector<glm::vec2>& Terrain::vertices() const { return _vertices; }
 
+	bool isAboveGround(const glm::vec2& pos) const;
 
 private:
 	Random _randomizer;

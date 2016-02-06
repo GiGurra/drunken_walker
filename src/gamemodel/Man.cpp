@@ -7,6 +7,10 @@ Man::Man(const float armLinkLength, const float legLinkLength) :
 	_rightArm(armLinkLength, armLinkLength),
 	_leftLeg(legLinkLength, legLinkLength),
 	_rightLeg(legLinkLength, legLinkLength) {
+	_leftArm.setAngle1(120.0f);
+	_rightArm.setAngle1(60.0f);
+	_leftLeg.setAngle1(270.0f);
+	_rightLeg.setAngle1(270.0f);
 }
 
 Man::~Man() {
