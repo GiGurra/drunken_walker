@@ -17,7 +17,7 @@ void GameState::updateManPosition(const Man& manLastFrame, const float dt) {
 
 	// Keep the man at correct height above ground
 	const float stepLength = _man.leftLeg().length()*0.25f;
-	const float manIdealHeightAboveTerrain = std::hypotf(_man.leftLeg().linkLength1(), _man.leftLeg().linkLength2());
+	const float manIdealHeightAboveTerrain = 1.10f * std::hypotf(_man.leftLeg().linkLength1(), _man.leftLeg().linkLength2());
 	const glm::vec2 terrainUnderMan = _terrain.vertexAtX(_man.pos().x);
 	const glm::vec2 terrainLeftOfMan = _terrain.vertexAtX(std::max(0.0f, _man.pos().x - stepLength));
 	const glm::vec2 terrainRightOfMan = _terrain.vertexAtX(_man.pos().x + stepLength);

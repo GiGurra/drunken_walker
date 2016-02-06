@@ -16,6 +16,13 @@ static void drawSolidCircle(const glm::vec2& center, const float radius, const i
 	glEnd();
 }
 
+static void drawLineBetween(const glm::vec2& a, const glm::vec2& b) {
+	glBegin(GL_LINES);
+	glVertex2f(a.x, a.y);
+	glVertex2f(b.x, b.y);
+	glEnd();
+}
+
 Renderer::Renderer(const GlfwWindow& window, const GameState& gameState):
 	_window(window), 
 	_gameState(gameState),
@@ -66,10 +73,15 @@ void Renderer::drawMan() {
 }
 
 void Renderer::drawLimb(const Limb& limb) {
+	// Joints
 	glColor3ub(0xf9, 0xe0, 0x4c);
 	drawSolidCircle(limb.jointPos(), 0.1f);
 	glColor3ub(0xf7, 0xe8, 0xaa);
 	drawSolidCircle(limb.edgePos(), 0.1f);
+	// links
+	glLineWidth(2.0f);
+	drawLineBetween(glm::vec2(), limb.jointPos());
+	drawLineBetween(limb.jointPos(), limb.edgePos());
 }
 
 void Renderer::drawManBodyCenter() {
