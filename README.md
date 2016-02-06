@@ -20,6 +20,7 @@
  * Finish line vs flappy bird :S
  * Auto-create more terrain on demand
  * A better inverse kinematics solver
+ * Refactor & Remove/de-bloat the 'GameState' class
 
 
 ## Build Instructions
