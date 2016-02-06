@@ -40,12 +40,14 @@ void GameState::swapLiftedLegIfHitGround(const Man& manLastFrame) {
 
 	if (manLastFrame.liftedLegEnum() == _man.liftedLegEnum()) {
 
-		const auto footPos = _man.liftedLeg().edgePos();
-		const auto lastFrameFootPos = manLastFrame.liftedLeg().edgePos();
-		const glm::vec2 footPosChange = footPos - lastFrameFootPos;
+		const glm::vec2 relFootPos = _man.liftedLeg().edgePos();
+		const glm::vec2 lastFrameRelFootPos = manLastFrame.liftedLeg().edgePos();
+		const glm::vec2 footPosChange = relFootPos - lastFrameRelFootPos;
+		const glm::vec2 absFootPos = _man.pos() + relFootPos;
 
-		if (footPosChange.y < 0 && _terrain.isBelowGround(footPos)) {
-		//	_man.swapLegMovingForward();
+		if (footPosChange.y < 0 && _terrain.isBelowGround(absFootPos)) {
+			Logger::global().info("LegSwap: Now moving the other leg forward!");
+			_man.swapLegMovingForward();
 		}
 	}
 
@@ -85,6 +87,11 @@ void GameState::updateLiftedLeg(const Man& manLastFrame, const float dt) {
 	const auto lastManX = manLastFrame.pos().x;
 	const auto manX = _man.pos().x;
 	if (manX != lastManX) {
+		Limb& leg = _man.liftedLeg();
+		const float dx = dt * _man.vel().x;
+		const float dy = leg.edgePos().x < 0.0f ? dx : -dx;
+		const glm::vec2 prevPos = leg.edgePos();
+		leg.placeEdgeAt(prevPos + glm::vec2(dx, dy));
 	}
 }
 
