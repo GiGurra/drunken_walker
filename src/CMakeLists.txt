@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.1)
+set(CXX_STANDARD 14)
+
 project(drunken_walker)
 
 add_subdirectory(deps/glfw-3.1.2)
@@ -12,6 +14,8 @@ add_executable(
 	main.cpp
 	gamemodel/GameState.cpp
 	gamemodel/GameState.h
+	gamemodel/Terrain.cpp
+	gamemodel/Terrain.h
 	input/Input.cpp
 	input/Input.h
 	graphics/Renderer.cpp
