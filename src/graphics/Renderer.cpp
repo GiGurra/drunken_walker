@@ -55,9 +55,8 @@ void Renderer::drawGround() {
 	glBegin(GL_LINE_STRIP);
 
 	const auto& vertices = _gameState.terrain().vertices();
-
-	for (std::size_t i = 0; i < vertices.size(); i++)
-		glVertex2fv(&vertices[i].x);
+	for (const auto& vertex: vertices)
+		glVertex2f(vertex.x, vertex.y);
 
 	glEnd();
 }
