@@ -18,6 +18,7 @@ public:
 	const Man& man() const;
 
 private:
+	double _tLast;
 	Random _randomizer;
 	Terrain _terrain;
 	Man _man;

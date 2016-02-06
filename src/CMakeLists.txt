@@ -19,6 +19,8 @@ add_executable(
 	gamemodel/Constants.h
 	gamemodel/Man.cpp
 	gamemodel/Man.h
+	gamemodel/Limb.cpp
+	gamemodel/Limb.h
 	input/Input.cpp
 	input/Input.h
 	graphics/Renderer.cpp

@@ -7,6 +7,8 @@ namespace constants {
 	static const float SCREEN_WIDTH = 15.0f;
 	static const float MAN_HEIGHT = 2.0f;
 	static const float WORLD_INIT_LENGTH = 100.0f;
+	static const float MAN_ARM_LINK_LENGTH = 0.3f;
+	static const float MAN_LEG_LINK_LENGTH = 0.5f;
 };
 
 #endif
