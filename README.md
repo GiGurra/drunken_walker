@@ -28,3 +28,9 @@
 * cd target
 * cmake ../src/
 * make (or open the generated VS solution if that's your thing)
+
+
+## Build Dependencies
+* Should build on Visual Studio 2015 without any external dependencies 
+* Run deps/ubuntu.sh if you're on ubuntu
+* Check contents of deps/ubuntu.sh to figure out what you need on other dists
