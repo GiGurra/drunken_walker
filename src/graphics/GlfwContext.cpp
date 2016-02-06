@@ -1,6 +1,7 @@
 #include "GlfwContext.h"
 #include <GLFW/glfw3.h>
 #include <logging/Logger.h>
+#include <stdexcept>
 
 GlfwContext::GlfwContext(error_callback errorCallbackFcn) {
 	Logger::global().info("Initializing Glfw Context");
