@@ -7,6 +7,7 @@
 
 ### Future stuff that's nice to have
  * Walk to the left :)
+ * More intelligent decision making on when to 'change lifted leg'
  * Jumping
  * Obstacles for jumping
  * Some text/ui on screen
