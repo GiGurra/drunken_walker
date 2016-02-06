@@ -24,7 +24,7 @@ int main(int argc, char ** argv) {
 		gameState.update(t);
 		renderer.draw(t);
 
-		return !gameState.isExitFlagSet() && t < 3600.0;
+		return !gameState.isExitFlagSet();
 	});
 
 	return 0;
