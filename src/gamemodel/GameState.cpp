@@ -1,6 +1,6 @@
 #include "GameState.h"
 
-GameState::GameState() {
+GameState::GameState() : _randomizer(0.0, 1.0) {
 }
 
 GameState::~GameState() {

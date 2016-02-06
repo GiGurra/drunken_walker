@@ -1,4 +1,3 @@
-#include <memory>
 #include <logging/Logger.h>
 #include <graphics/GlfwContext.h>
 #include <graphics/GlfwWindow.h>
@@ -11,19 +10,19 @@ int main(int argc, char ** argv) {
 	GlfwContext glfwContext(Logger::glfwErrorCallback);
 	GlfwWindow glfwWindow(1200, 800);
 
-	auto gameState = std::make_unique<GameState>();
-	auto input = std::make_unique<Input>(*gameState);
-	auto renderer = std::make_unique<Renderer>(glfwWindow, *gameState);
+	GameState gameState;
+	Input input(gameState);
+	Renderer renderer(glfwWindow, gameState);
 
 	glfwWindow.makeCurrent();
-	glfwWindow.setKeyCallback(input->handleKeyboardFcnPtr);
+	glfwWindow.setKeyCallback(input.handleKeyboardFcnPtr);
 	glfwWindow.enterMainLoop([&] {
 
 		const double t = glfwGetTime();
 
-		input->update(t);
-		gameState->update(t);
-		renderer->draw(t);
+		input.update(t);
+		gameState.update(t);
+		renderer.draw(t);
 
 		return t < 3600.0;
 	});

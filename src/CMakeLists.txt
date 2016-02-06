@@ -16,6 +16,7 @@ add_executable(
 	gamemodel/GameState.h
 	gamemodel/Terrain.cpp
 	gamemodel/Terrain.h
+	gamemodel/Constants.h
 	input/Input.cpp
 	input/Input.h
 	graphics/Renderer.cpp
@@ -27,6 +28,8 @@ add_executable(
 	logging/Logger.cpp
 	logging/Logger.h
 	util/NonCopyable.h
+	util/Random.cpp
+	util/Random.h
 )
 
 target_link_libraries(
