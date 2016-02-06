@@ -25,6 +25,7 @@ private:
 	void beginFrame();
 	void drawGround();
 	void drawMan();
+	void drawManBodyCenter();
 	void drawTestTriangle(const double time);
 
 	void pushPopped(std::function<void()> expr);

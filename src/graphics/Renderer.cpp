@@ -3,6 +3,10 @@
 #include <gamemodel/GameState.h>
 #include <gamemodel/Constants.h>
 
+#define _USE_MATH_DEFINES
+#include <cmath> // why is this not enough to get M_PI in VS2015?....
+#include <math.h>
+
 Renderer::Renderer(const GlfwWindow& window, const GameState& gameState):
 	_window(window), 
 	_gameState(gameState),
@@ -43,7 +47,24 @@ void Renderer::drawGround() {
 }
 
 void Renderer::drawMan() {
+}
 
+void Renderer::drawManBodyCenter() {
+	// Draw circle at center of man.. for reference
+	const auto center = _gameState.man().pos();
+	const float radius = 0.1f;
+	const int n = 50;
+
+	glColor3ub(0x00, 0xA6, 0x00);	
+	glBegin(GL_TRIANGLE_FAN);
+	glVertex2f(center.x, center.y);
+	for (int i = 0; i <= n; i++) {
+		const float angle = static_cast<float>(2.0 * M_PI * static_cast<double>(i) / static_cast<double>(n));
+		const float x = center.x + radius * cosf(angle);
+		const float y = center.y + radius * sinf(angle);
+		glVertex2f(x,y);
+	}
+	glEnd();
 }
 
 void Renderer::drawTestTriangle(const double time) {
@@ -69,5 +90,6 @@ void Renderer::draw(const double time) {
 	beginFrame();
 	pushPopped([this] { drawGround(); });
 	pushPopped([this] { drawMan(); });
-	pushPopped([this, time] { drawTestTriangle(time); });
+	pushPopped([this] { drawManBodyCenter(); });
+	//pushPopped([this, time] { drawTestTriangle(time); });
 }

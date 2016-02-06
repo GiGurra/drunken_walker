@@ -24,6 +24,9 @@ private:
 	GameState& _gameState;
 
 	void handleKeyboard(InputKey key, InputScancode scanCode, InputAction action, InputMods mods);
+	void handleKeyPress(InputKey key, InputScancode scanCode, InputMods mods);
+	void handleKeyRelease(InputKey key, InputScancode scanCode, InputMods mods);
+	void handleKeyRepeat(InputKey key, InputScancode scanCode, InputMods mods);
 };
 
 #endif

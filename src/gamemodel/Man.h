@@ -20,6 +20,9 @@ public:
 	glm::vec2& pos() { return _pos; }
 	const glm::vec2& pos() const { return _pos; }
 
+	glm::vec2& vel() { return _vel; }
+	const glm::vec2& vel() const { return _vel; }
+
 	const Limb& leftArm()	const { return _leftArm; }
 	const Limb& rightArm()	const { return _rightArm; }
 	const Limb& leftLeg()	const { return _leftLeg; }
@@ -32,6 +35,7 @@ public:
 
 private:
 	glm::vec2 _pos;
+	glm::vec2 _vel;
 	Limb _leftArm;
 	Limb _rightArm;
 	Limb _leftLeg;

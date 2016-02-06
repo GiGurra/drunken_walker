@@ -14,6 +14,8 @@ public:
 	void setAngle1(const float degs) { _angle1Degs = degs; }
 	void setAngle2(const float degs) { _angle2Degs = degs; }
 
+	float length() const { return linkLength1() + linkLength2(); }
+
 private:
 	const float _linkLength1;
 	const float _linkLength2;

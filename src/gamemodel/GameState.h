@@ -14,10 +14,18 @@ public:
 
 	void update(const double time);
 
-	const Terrain& terrain() const;
-	const Man& man() const;
+	const Terrain& terrain() const { return _terrain; }
+	const Man& man() const { return _man; }
+
+	Terrain& terrain() { return _terrain; }
+	Man& man() { return _man; }
+
+	void setExitFlag(const bool state);
+	bool isExitFlagSet() const { return _exitFlag; }
+
 
 private:
+	bool _exitFlag;
 	double _tLast;
 	Random _randomizer;
 	Terrain _terrain;
