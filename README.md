@@ -31,6 +31,6 @@
 
 
 ## Build Dependencies
-* Builds on Visual Studio 2015 without any external dependencies 
-* Run deps/ubuntu.sh if you're on ubuntu
-* Check contents of deps/ubuntu.sh to figure out what you need on other dists
+* On Windows: Builds on Visual Studio 2015 without any external dependencies 
+* On Ubuntu: Install dependencies listed in deps/ubuntu.sh
+* Others: Check contents of deps/ubuntu.sh to figure out what you need on other dists
