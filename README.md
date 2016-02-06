@@ -27,11 +27,12 @@
 * create a directory inside named target/ 
 * cd target
 * cmake ../src/
-* make (or open the generated VS solution if that's your thing)
+* make on linux || open the generated VS solution on windows
 
 
 ## Build Dependencies
 * [CMake](https://cmake.org/) >= 3.1
+* make + g++ on linux || vs2015 on windows
 Then:
 * On Windows: Builds on Visual Studio 2015 without any external dependencies 
 * On Ubuntu: Install dependencies listed in deps/ubuntu.sh
