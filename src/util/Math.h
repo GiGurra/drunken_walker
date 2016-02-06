@@ -9,7 +9,7 @@
 
 // Calculates angle between a and b
 inline float cosineLawAngle(const float a, const float b, const float c) {
-	return std::acosf((a*a + b*b - c*c) / (2.0f*a*b));
+	return std::acos((a*a + b*b - c*c) / (2.0f*a*b));
 }
 
 #endif

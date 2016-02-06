@@ -9,8 +9,8 @@ static void drawSolidCircle(const glm::vec2& center, const float radius, const i
 	glVertex2f(center.x, center.y);
 	for (int i = 0; i <= n; i++) {
 		const float angle = static_cast<float>(2.0 * M_PI * static_cast<double>(i) / static_cast<double>(n));
-		const float x = center.x + radius * cosf(angle);
-		const float y = center.y + radius * sinf(angle);
+		const float x = center.x + radius * cos(angle);
+		const float y = center.y + radius * sin(angle);
 		glVertex2f(x, y);
 	}
 	glEnd();

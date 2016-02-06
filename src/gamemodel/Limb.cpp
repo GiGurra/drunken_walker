@@ -12,21 +12,21 @@ Limb::~Limb() {
 
 glm::vec2 Limb::edgePos() const {
 	const float totalAngleDegs = angle1Degs() + angle2Degs();
-	const float dx = linkLength2() * std::cosf(totalAngleDegs * TORADSF);
-	const float dy = linkLength2() * std::sinf(totalAngleDegs * TORADSF);
+	const float dx = linkLength2() * std::cos(totalAngleDegs * TORADSF);
+	const float dy = linkLength2() * std::sin(totalAngleDegs * TORADSF);
 	return jointPos() + glm::vec2(dx, dy);
 }
 
 glm::vec2 Limb::jointPos() const {
-	const float x = linkLength1() * std::cosf(angle1Degs() * TORADSF);
-	const float y = linkLength1() * std::sinf(angle1Degs() * TORADSF);
+	const float x = linkLength1() * std::cos(angle1Degs() * TORADSF);
+	const float y = linkLength1() * std::sin(angle1Degs() * TORADSF);
 	return glm::vec2(x, y);
 }
 
 void Limb::placeEdgeAt(const glm::vec2& target, const bool rightHand) {
 	if (glm::length(target) > length()) {
 		// Make a straight best-effort line :S
-		setAngle1(TODEGSF * std::atan2f(target.y, target.x));
+		setAngle1(TODEGSF * std::atan2(target.y, target.x));
 		setAngle2(0.0f);
 	}
 	else {
@@ -38,7 +38,7 @@ void Limb::placeEdgeAt(const glm::vec2& target, const bool rightHand) {
 		const float calf = linkLength1(); // lår
 		const float shin = linkLength2(); // vad
 
-		const float directAngleDegs = TODEGSF * std::atan2f(target.y, target.x);
+		const float directAngleDegs = TODEGSF * std::atan2(target.y, target.x);
 
 		if (rightHand) {
 			const float angle1Degs = directAngleDegs + TODEGSF * cosineLawAngle(direct, calf, shin);
