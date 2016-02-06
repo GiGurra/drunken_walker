@@ -1,8 +1,6 @@
 # drunken_walker
 
-## Stuff left todo..
-
-### mvp
+### Stuff left todo.. mvp
 
 * Draw terrain
 * Draw stick figure
